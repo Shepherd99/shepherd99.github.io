@@ -3,57 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shepherd99 | Learning Journey</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 20px;
-            color: #24292e;
-            background-color: #f6f8fa;
-        }
-        .card {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid #e1e4e8;
-        }
-        h1 { color: #0366d6; margin-top: 0; }
-        h2 { color: #24292e; border-bottom: 1px solid #e1e4e8; padding-bottom: 5px; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        a { color: #0366d6; text-decoration: none; }
-    </style>
+    <meta name="description" content="Cybersecurity portfolio and learning journey of Christopher Chinedu (Shepherd99). Featuring incident response labs, packet capture analysis, MITRE ATT&CK mapping, and Linux security.">
+    <meta name="theme-color" content="#070b14">
+    <title>Christopher Chinedu | Cybersecurity Portfolio & Threat Lab</title>
+
+    <!-- Google Fonts (Open Source: Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
-    <div class="card">
-        <h1>Shepherd99</h1>
-        <p>Christopher Chinedu</p>
-        <p>Welcome to my cybersecurity learning portfolio! I am currently at the beginning of my journey, building strong foundational knowledge in core security concepts.</p>
 
-        <h2>What I Am Learning</h2>
-        <ul>
-            <li><strong>Cybersecurity Fundamentals:</strong> Core concepts, security principles, and industry terminology.</li>
-            <li><strong>Networking & System Basics:</strong> Understanding how data moves and how systems communicate.</li>
-            <li><strong>Hands-On Practice:</strong> Learning essential tools and setting up study environments.</li>
-        </ul>
+    <!-- Background Artwork & Interactive Canvas VFX Layers -->
+    <div class="bg-layer" aria-hidden="true"></div>
+    <canvas id="cyber-canvas" aria-hidden="true"></canvas>
+    <div class="bg-overlay" aria-hidden="true"></div>
 
-        <h2>Next Goals</h2>
-        <ul>
-            <li>Set up virtual environments for hands-on security labs.</li>
-            <li>Learn essential command-line tools and navigation.</li>
-            <li>Publish notes and write-ups as I progress.</li>
-        </ul>
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="https://github.com/shepherd99/incident-response-quarantine-lab">Incident Response Quarantine Lab</a></li>
-            <li><a href="https://github.com/shepherd99/network-traffic-capture-analysis">Network Traffic Capture Analysis</a></li>
-        </ul>
+    <!-- Mobile Top Navigation Bar -->
+    <header class="mobile-topbar">
+        <div class="mobile-brand">
+            <span class="profile-avatar" style="width: 28px; height: 28px; font-size: 0.8rem;">CC</span>
+            <span>Shepherd99</span>
+        </div>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="sidebar">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+    </header>
 
-        <h2>Connect</h2>
-        <p>Follow my progress on <a href="https://github.com/Shepherd99">GitHub</a>.</p>
+    <!-- Mobile Backdrop Overlay -->
+    <div id="mobile-overlay" class="mobile-overlay" aria-hidden="true"></div>
+
+    <div class="app-container">
+
+        <!-- Sidebar Navigation (Desktop Fixed / Mobile Drawer) -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-profile">
+                    <div class="profile-identity">
+                        <div class="profile-avatar">CC</div>
+                        <div class="profile-meta">
+                            <h1>Christopher Chinedu</h1>
+                            <div class="profile-subtitle">Shepherd99 // CyberSec</div>
+                        </div>
+                    </div>
+                    <div class="status-pill">
+                        <span class="status-dot"></span>
+                        <span>SOC STATUS: ACTIVE DEFENSE</span>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav" aria-label="Dashboard Navigation">
+                    <div class="nav-section-title">Operations Console</div>
+                    <a href="#overview" class="nav-link active">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">00</span>
+                            <span>Overview</span>
+                        </div>
+                    </a>
+                    <a href="#projects" class="nav-link">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">01</span>
+                            <span>Active Projects & Labs</span>
+                        </div>
+                    </a>
+
+                    <div class="nav-section-title">Knowledge Domains</div>
+                    <a href="#scanning-section" class="nav-link">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">02</span>
+                            <span>Scanning & Enum</span>
+                        </div>
+                    </a>
+                    <a href="#detection-section" class="nav-link">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">03</span>
+                            <span>Detection & Analysis</span>
+                        </div>
+                    </a>
+                    <a href="#mitre-section" class="nav-link">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">04</span>
+                            <span>MITRE ATT&CK</span>
+                        </div>
+                    </a>
+                    <a href="#incident-response-section" class="nav-link">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">05</span>
+                            <span>Incident Response</span>
+                        </div>
+                    </a>
+                    <a href="#networking-section" class="nav-link">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">06</span>
+                            <span>Networking</span>
+                        </div>
+                    </a>
+                    <a href="#linux-section" class="nav-link">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">07</span>
+                            <span>Linux Security</span>
+                        </div>
+                    </a>
+
+                    <div class="nav-section-title">Identity & Comms</div>
+                    <a href="#about-section" class="nav-link">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">08</span>
+                            <span>About & Philosophy</span>
+                        </div>
+                    </a>
+                    <a href="#contact-section" class="nav-link">
+                        <div class="nav-link-content">
+                            <span class="nav-link-num">09</span>
+                            <span>Terminal Contact</span>
+                        </div>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="telemetry-row">
+                    <span>SYS CLOCK</span>
+                    <span id="utc-clock" class="accent-text">00:00:00 UTC</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/Shepherd99" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub Profile">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/christopher-chinedu%F0%9F%9B%A1%EF%B8%8F%F0%9F%94%90-79885b231?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn Profile">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- Telemetry Station Banner -->
+            <div class="telemetry-banner">
+                <div class="telemetry-item">
+                    <span class="telemetry-label">CONSOLE:</span>
+                    <span class="telemetry-value">SOC DEFENSE TERMINAL</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="telemetry-label">HOST:</span>
+                    <span class="telemetry-value">shepherd99.github.io</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="telemetry-label">SECURITY POSTURE:</span>
+                    <span class="emerald-text">● ZERO TRUST VERIFIED</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="telemetry-label">TOTAL LABS:</span>
+                    <span id="total-projects-badge" class="telemetry-value">6</span>
+                </div>
+            </div>
+
+            <!-- Hero Section / Overview -->
+            <section id="overview" class="dashboard-section hero-section">
+                <div class="hero-pill">
+                    <span class="status-dot"></span>
+                    <span>CYBERSECURITY LEARNING & RESEARCH LAB</span>
+                </div>
+                <h2 class="hero-title">Defensive Engineering, Threat Analysis & Incident Response</h2>
+                <p class="hero-description">
+                    Welcome to my cybersecurity portfolio. I am dedicated to mastering practical security operations, threat detection, network forensics, and defensive systems hardening. My focus is on understanding root-cause attack vectors, packet-level traffic anomalies, and executing structured containment procedures.
+                </p>
+
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-num">06</div>
+                        <div class="stat-label">Core Domains</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">100%</div>
+                        <div class="stat-label">Hands-On Labs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">NIST & MITRE</div>
+                        <div class="stat-label">Framework Alignment</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">Open-Source</div>
+                        <div class="stat-label">Tooling & Analysis</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects & Labs Showcase -->
+            <section id="projects" class="dashboard-section">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">// 01. REPOSITORIES & LAB WORK</span>
+                        <h2 class="section-title">Active Security Projects</h2>
+                    </div>
+                </div>
+
+                <!-- Category Filter Tabs -->
+                <div class="filter-tabs-wrapper" role="tablist" aria-label="Project Categories">
+                    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Domains</button>
+                    <button class="filter-btn" data-filter="incident-response" role="tab" aria-selected="false">Incident Response</button>
+                    <button class="filter-btn" data-filter="detection" role="tab" aria-selected="false">Detection & Analysis</button>
+                    <button class="filter-btn" data-filter="scanning" role="tab" aria-selected="false">Scanning & Enum</button>
+                    <button class="filter-btn" data-filter="mitre" role="tab" aria-selected="false">MITRE ATT&CK</button>
+                    <button class="filter-btn" data-filter="networking" role="tab" aria-selected="false">Networking</button>
+                    <button class="filter-btn" data-filter="linux" role="tab" aria-selected="false">Linux</button>
+                </div>
+
+                <!-- Dynamic Projects Container (Populated via assets/js/projects-data.js) -->
+                <div id="projects-grid" class="projects-grid">
+                    <!-- Semantic Fallback Cards for No-JS Environments -->
+                    <article class="project-card featured" data-category="incident-response">
+                        <div class="card-header">
+                            <div class="badge-group">
+                                <span class="badge category-badge incident-response">Incident Response Playbooks</span>
+                                <span class="badge status-badge completed">● Completed</span>
+                            </div>
+                            <span class="project-date mono-text">2026</span>
+                        </div>
+                        <h3 class="card-title">Incident Response Quarantine Lab</h3>
+                        <p class="card-summary">Designed and implemented an isolated host containment architecture to simulate malware outbreak quarantine procedures and forensic evidence preservation.</p>
+                        <div class="project-tags">
+                            <span class="tag-pill">#Incident Response</span>
+                            <span class="tag-pill">#Host Isolation</span>
+                            <span class="tag-pill">#Firewall Rules</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://github.com/shepherd99/incident-response-quarantine-lab" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Repository</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card featured" data-category="detection">
+                        <div class="card-header">
+                            <div class="badge-group">
+                                <span class="badge category-badge detection">Detection & Analysis</span>
+                                <span class="badge status-badge completed">● Completed</span>
+                            </div>
+                            <span class="project-date mono-text">2026</span>
+                        </div>
+                        <h3 class="card-title">Network Traffic Capture Analysis</h3>
+                        <p class="card-summary">Performed deep packet inspection and network protocol analysis on captured PCAP files to identify reconnaissance behaviors and protocol anomalies.</p>
+                        <div class="project-tags">
+                            <span class="tag-pill">#Wireshark</span>
+                            <span class="tag-pill">#Packet Analysis</span>
+                            <span class="tag-pill">#PCAP</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://github.com/shepherd99/network-traffic-capture-analysis" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Repository</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Knowledge Domains Deep-Dive Matrix -->
+            <section id="domains" class="dashboard-section">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">// 02. CURRICULUM & METHODOLOGIES</span>
+                        <h2 class="section-title">Knowledge Domains Matrix</h2>
+                    </div>
+                </div>
+
+                <div class="domain-grid">
+
+                    <!-- Domain 1: Scanning & Enumeration -->
+                    <article id="scanning-section" class="domain-card">
+                        <div class="domain-header">
+                            <div class="domain-icon-wrapper">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="22" y1="12" x2="18" y2="12"></line>
+                                    <line x1="6" y1="12" x2="2" y2="12"></line>
+                                    <line x1="12" y1="6" x2="12" y2="2"></line>
+                                    <line x1="12" y1="22" x2="12" y2="18"></line>
+                                </svg>
+                            </div>
+                            <h3 class="domain-title">Scanning & Enumeration</h3>
+                        </div>
+                        <p>Mapping network boundaries, discovering active hosts, querying open ports, identifying service versions, and enumerating potential vulnerability surfaces.</p>
+                        <div class="domain-tools">
+                            <span class="tool-chip">Nmap</span>
+                            <span class="tool-chip">Recon-ng</span>
+                            <span class="tool-chip">NSE Scripts</span>
+                            <span class="tool-chip">Gobuster</span>
+                            <span class="tool-chip">Netcat</span>
+                        </div>
+                    </article>
+
+                    <!-- Domain 2: Detection & Analysis -->
+                    <article id="detection-section" class="domain-card">
+                        <div class="domain-header">
+                            <div class="domain-icon-wrapper">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg>
+                            </div>
+                            <h3 class="domain-title">Detection & Analysis</h3>
+                        </div>
+                        <p>Packet dissection, traffic baseline comparisons, anomaly identification, and log correlation to isolate suspicious behaviors before lateral spread occurs.</p>
+                        <div class="domain-tools">
+                            <span class="tool-chip">Wireshark</span>
+                            <span class="tool-chip">Tshark</span>
+                            <span class="tool-chip">Zeek</span>
+                            <span class="tool-chip">Suricata / Snort</span>
+                            <span class="tool-chip">SIEM Queries</span>
+                        </div>
+                    </article>
+
+                    <!-- Domain 3: MITRE ATT&CK -->
+                    <article id="mitre-section" class="domain-card">
+                        <div class="domain-header">
+                            <div class="domain-icon-wrapper">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                                </svg>
+                            </div>
+                            <h3 class="domain-title">MITRE ATT&CK Framework</h3>
+                        </div>
+                        <p>Translating threat intelligence into defensive posture. Mapping observed adversary tactics, techniques, and procedures (TTPs) across kill chain stages.</p>
+                        <div class="domain-tools">
+                            <span class="tool-chip">Enterprise Matrix</span>
+                            <span class="tool-chip">T1566 Phishing</span>
+                            <span class="tool-chip">T1059 Command Execution</span>
+                            <span class="tool-chip">T1070 Defense Evasion</span>
+                        </div>
+                    </article>
+
+                    <!-- Domain 4: Incident Response Playbooks -->
+                    <article id="incident-response-section" class="domain-card">
+                        <div class="domain-header">
+                            <div class="domain-icon-wrapper">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="domain-title">Incident Response Playbooks</h3>
+                        </div>
+                        <p>Operational containment procedures adhering to NIST SP 800-61. Host isolation, memory preservation, forensic triage, and systematic eradication strategies.</p>
+                        <div class="domain-tools">
+                            <span class="tool-chip">Host Isolation</span>
+                            <span class="tool-chip">IPTables / UFW</span>
+                            <span class="tool-chip">Quarantine Labs</span>
+                            <span class="tool-chip">Triage Checklists</span>
+                        </div>
+                    </article>
+
+                    <!-- Domain 5: Networking -->
+                    <article id="networking-section" class="domain-card">
+                        <div class="domain-header">
+                            <div class="domain-icon-wrapper">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                    <rect x="2" y="2" width="6" height="6" rx="1"></rect>
+                                    <rect x="16" y="2" width="6" height="6" rx="1"></rect>
+                                    <rect x="9" y="16" width="6" height="6" rx="1"></rect>
+                                    <path d="M5 8v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"></path>
+                                    <line x1="12" y1="13" x2="12" y2="16"></line>
+                                </svg>
+                            </div>
+                            <h3 class="domain-title">Networking & Architecture</h3>
+                        </div>
+                        <p>Core network protocols, OSI 7-layer encapsulation, CIDR notation, subnet partitioning, VLAN segmentation, and perimeter firewall security rules.</p>
+                        <div class="domain-tools">
+                            <span class="tool-chip">TCP/IP</span>
+                            <span class="tool-chip">Subnetting / VLSM</span>
+                            <span class="tool-chip">DNS / DHCP</span>
+                            <span class="tool-chip">Routing Tables</span>
+                            <span class="tool-chip">ICMP / Traceroute</span>
+                        </div>
+                    </article>
+
+                    <!-- Domain 6: Linux -->
+                    <article id="linux-section" class="domain-card">
+                        <div class="domain-header">
+                            <div class="domain-icon-wrapper">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                    <polyline points="4 17 10 11 4 5"></polyline>
+                                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                                </svg>
+                            </div>
+                            <h3 class="domain-title">Linux Administration & Security</h3>
+                        </div>
+                        <p>CLI mastery, UNIX permission models, daemon service hardening, `/var/log` authentication auditing, and automated bash scripting for security workflows.</p>
+                        <div class="domain-tools">
+                            <span class="tool-chip">Bash Scripting</span>
+                            <span class="tool-chip">SUID / SGID</span>
+                            <span class="tool-chip">systemd</span>
+                            <span class="tool-chip">Auth Log Auditing</span>
+                            <span class="tool-chip">SSH Hardening</span>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- About Christopher & Roadmap -->
+            <section id="about-section" class="dashboard-section">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">// 03. PRACTITIONER PROFILE</span>
+                        <h2 class="section-title">About & Learning Philosophy</h2>
+                    </div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-narrative">
+                        <p>
+                            I am <strong>Christopher Chinedu</strong>, a dedicated cybersecurity practitioner focused on building rigorous, foundational expertise across defensive operations and threat intelligence. I believe that effective defensive security starts with a deep, intuitive comprehension of how protocols behave at the wire level and how operating systems enforce boundaries.
+                        </p>
+                        <p>
+                            Rather than relying solely on automated abstractions, I prioritize hands-on laboratory environments: constructing isolated networks in virtual hypervisors, capturing real traffic, tearing down packet headers, and drafting reproducible incident response playbooks.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="mono-text accent-text" style="margin-bottom: 0.75rem;">// ACTIVE ROADMAP & MILESTONES</h4>
+                        <ul class="roadmap-list">
+                            <li class="roadmap-item">
+                                <span class="roadmap-num">[01]</span>
+                                <div><strong>Virtual Laboratory Deployment:</strong> Maintain segmented environments for active traffic simulation, firewall tuning, and safe malware containment.</div>
+                            </li>
+                            <li class="roadmap-item">
+                                <span class="roadmap-num">[02]</span>
+                                <div><strong>Command-Line Mastery & Scripting:</strong> Authoring automated log analysis and security auditing utilities in Bash and Python.</div>
+                            </li>
+                            <li class="roadmap-item">
+                                <span class="roadmap-num">[03]</span>
+                                <div><strong>Technical Documentation:</strong> Publishing transparent lab reports, packet analysis teardowns, and blue-team notes for the open-source community.</div>
+                            </li>
+                            <li class="roadmap-item">
+                                <span class="roadmap-num">[04]</span>
+                                <div><strong>Defensive Certifications:</strong> Actively preparing for industry-standard defensive certifications (Security+, Network+, BTL1).</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Terminal Contact & Verification -->
+            <section id="contact-section" class="dashboard-section">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">// 04. COMMUNICATIONS & VERIFICATION</span>
+                        <h2 class="section-title">Terminal Contact</h2>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">shepherd99@soc-console:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">guest@soc:~$</span>
+                            <span class="terminal-cmd">whoami</span>
+                        </div>
+                        <div class="terminal-response">
+                            Christopher Chinedu | Cybersecurity Analyst & Threat Researcher (Shepherd99)
+                        </div>
+
+                        <div class="terminal-line" style="margin-top: 0.8rem;">
+                            <span class="terminal-prompt">guest@soc:~$</span>
+                            <span class="terminal-cmd">cat contact_links.json</span>
+                        </div>
+                        <div class="terminal-response">
+                            {<br>
+                            &nbsp;&nbsp;"github": "<a href="https://github.com/Shepherd99" target="_blank" rel="noopener noreferrer">https://github.com/Shepherd99</a>",<br>
+                            &nbsp;&nbsp;"linkedin": "<a href="https://www.linkedin.com/in/christopher-chinedu%F0%9F%9B%A1%EF%B8%8F%F0%9F%94%90-79885b231?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener noreferrer">Christopher Chinedu (LinkedIn)</a>",<br>
+                            &nbsp;&nbsp;"portfolio": "https://shepherd99.github.io",<br>
+                            &nbsp;&nbsp;"status": "Available for Collaborative Research & Security Roles"<br>
+                            }
+                        </div>
+
+                        <div class="terminal-line" style="margin-top: 0.8rem;">
+                            <span class="terminal-prompt">guest@soc:~$</span>
+                            <span class="terminal-cmd"><span style="animation: terminalBlink 1s infinite;">_</span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="site-footer">
+                <div>
+                    <span>&copy; 2026 Christopher Chinedu (Shepherd99). All rights reserved.</span>
+                </div>
+                <div>
+                    <span>Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a> | Zero-Budget Open-Source Stack</span>
+                </div>
+            </footer>
+
+        </main>
     </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/projects-data.js"></script>
+    <script src="assets/js/canvas-globe.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

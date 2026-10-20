@@ -1,0 +1,65 @@
+/**
+ * ==============================================================================
+ * SHEPHERD99 - CYBERNETIC ANIMATIONS & TRANSITIONS
+ * ==============================================================================
+ * Subtle keyframes, glowing pulses, and reduced-motion overrides.
+ * ==============================================================================
+ */
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(0, 229, 255, 0.15), inset 0 0 10px rgba(0, 229, 255, 0.05);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(0, 229, 255, 0.28), inset 0 0 14px rgba(0, 229, 255, 0.1);
+    }
+}
+
+@keyframes beaconPing {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.35);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+}
+
+@keyframes terminalBlink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes subtleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+/* Reduced Motion Mode for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .bg-layer {
+        transform: none !important;
+    }
+}
