@@ -138,3 +138,20 @@ function getProjects(category = "all") {
     }
     return PROJECTS_DATA.filter(project => project.category === category);
 }
+{
+    id: "active-directory-lab",
+    title: "Active Directory Domain Enumeration",
+    category: "scanning", // "incident-response" | "detection" | "scanning" | "mitre" | "networking" | "linux"
+    categoryName: "Scanning & Enumeration",
+    status: "Completed",
+    date: "2026",
+    featured: false,
+    summary: "Simulated domain reconnaissance and mapped attack paths using BloodHound and PowerShell.",
+    highlights: [
+        "Enumerated Kerberoasting targets and unconstrained delegation paths.",
+        "Audited Active Directory group policies for privilege escalation flaws."
+    ],
+    tags: ["Active Directory", "BloodHound", "PowerShell", "Kerberos"],
+    githubUrl: "https://github.com/Shepherd99/your-repo-name",
+    writeupUrl: "https://github.com/Shepherd99/your-repo-name#readme"
+},
