@@ -78,6 +78,7 @@ The background features a custom, high-fidelity 3D holographic Earth globe rende
 ## 📬 Connect
 
 - **Author:** Christopher Chinedu Osigwe
+- **Email:** [osigwechristopherchinedu@gmail.com](mailto:osigwechristopherchinedu@gmail.com)
 - **GitHub:** [@Shepherd99](https://github.com/Shepherd99)
 - **LinkedIn:** [Christopher Chinedu Osigwe](https://www.linkedin.com/in/christopher-chinedu%F0%9F%9B%A1%EF%B8%8F%F0%9F%94%90-79885b231)
 - **Portfolio:** [shepherd99.github.io](https://shepherd99.github.io)
