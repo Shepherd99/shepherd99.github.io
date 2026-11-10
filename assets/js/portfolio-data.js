@@ -85,6 +85,26 @@ const PROJECTS_DATA = [
         tags: ["Wireshark", "Packet Analysis", "PCAP", "TCP/IP", "Traffic Inspection", "Detection"],
         githubUrl: "https://github.com/shepherd99/network-traffic-capture-analysis",
         writeupUrl: "https://github.com/shepherd99/network-traffic-capture-analysis#readme"
+    },
+    {
+        id: "secure-hospital-network",
+        title: "Secure Hospital Network",
+        category: "networking",
+        status: "Completed",
+        date: "2026",
+        featured: true,
+        summary: "Designed and implemented a secure multi-site hospital network in Cisco Packet Tracer, featuring VLAN segmentation, access control lists, OSPF dynamic routing, redundancy mechanisms, and centralized syslog monitoring — backed by a documented test plan with results.",
+        highlights: [
+            "Segmented network traffic across departments using VLANs with inter-VLAN routing and trunk configurations.",
+            "Applied standard and extended ACLs to enforce least-privilege access policies between clinical, administrative, and guest zones.",
+            "Configured OSPF routing across multiple sites with redundant links and failover paths for high availability.",
+            "Deployed centralized syslog logging for real-time event monitoring, diagnostics, and audit readiness.",
+            "Authored a comprehensive test plan documenting connectivity, security, and failover test cases."
+        ],
+        tags: ["Cisco Packet Tracer", "VLAN Segmentation", "ACLs", "OSPF", "Redundancy", "Syslog", "Network Security"],
+        githubUrl: "https://github.com/Shepherd99/Secure-hospital-network",
+        writeupUrl: "https://github.com/Shepherd99/Secure-hospital-network/blob/main/diagrams/topology.png",
+        writeupLabel: "Topology Diagram"
     }
 ];
 

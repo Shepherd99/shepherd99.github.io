@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (project.writeupUrl && project.writeupUrl !== project.githubUrl) {
                         linksHtml += `
                             <a href="${project.writeupUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                                <span>Write-Up &rarr;</span>
+                                <span>${project.writeupLabel || 'Write-Up'} &rarr;</span>
                             </a>
                         `;
                     }
